@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"github.com/fatih/color"
+	"time"
+)
 
 const MacOS = "macOs"
 
@@ -39,15 +42,24 @@ type file struct {
 
 type styleFileType struct {
 	icon   string
-	color  string
+	color  color.Attribute
 	symbol string
 }
 
 var mapStyleFileType = map[int]styleFileType{
 	fileRegular:    {icon: "📄"},
-	fileDirectory:  {icon: "📁", color: "BLUE", symbol: "/"},
-	fileExecutable: {icon: "🚀", color: "GREEN", symbol: "*"},
-	fileCompress:   {icon: "📦", color: "RED"},
-	fileImage:      {icon: "📸", color: "MAGENTA"},
-	fileLink:       {icon: "🔗", color: "CYAN"},
+	fileDirectory:  {icon: "📁", color: color.BgHiBlue, symbol: "/"},
+	fileExecutable: {icon: "🚀", color: color.BgGreen, symbol: "*"},
+	fileCompress:   {icon: "📦", color: color.BgRed},
+	fileImage:      {icon: "📸", color: color.BgMagenta},
+	fileLink:       {icon: "🔗", color: color.BgCyan},
 }
+
+var (
+	blue    = color.New(color.BgHiBlue).Add(color.Bold).SprintfFunc()
+	green   = color.New(color.BgGreen).Add(color.Bold).SprintfFunc()
+	red     = color.New(color.BgRed).Add(color.Bold).SprintfFunc()
+	magenta = color.New(color.BgMagenta).Add(color.Bold).SprintfFunc()
+	cyan    = color.New(color.BgCyan).Add(color.Bold).SprintfFunc()
+	yellow  = color.New(color.BgYellow).SprintfFunc()
+)
